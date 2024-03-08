@@ -1,4 +1,4 @@
-import { Application, Sprite } from 'pixi.js';
+import { Application, Container, Sprite } from 'pixi.js';
 import { Assets } from 'pixi.js';
 
 // Crear una instancia de la aplicación
@@ -55,17 +55,27 @@ async function init() {
 
     // Crear los sprites una vez que los activos estén cargados
     const messi: Sprite = Sprite.from("myMessi");
-    messi.x = 400;
-    messi.y = 40;
-
-	messi.scale.x = 1;
-	messi.scale.y = 1;
-	
-	messi.angle= 45;
-
+    //messi.x = 400;
+    //messi.y = 40;
+    //messi.scale.x = 1;
+	//messi.scale.y = 1;
+	//messi.angle= 45;
+    //clampy.scale.set(0.5,0.5);
+    //clampy.position.set(100,100)
 	const clampy: Sprite = Sprite.from("myClampy");
-	app.stage.addChild(clampy);
-    app.stage.addChild(messi);
+    clampy.position.set(170,50)
+    clampy.scale.set(0.2);
+
+    const messiclampy : Container = new Container();
+
+	messiclampy.addChild(messi);
+    messiclampy.addChild(clampy);
+
+    messiclampy.scale.set(1);
+    messiclampy.x = 200;
+    messiclampy.y = 300;
+        
+    app.stage.addChild(messiclampy);
 }
 
 // Llamar a la función init para comenzar la carga de activos
