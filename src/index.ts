@@ -1,5 +1,8 @@
-import { Application, Container, Sprite } from 'pixi.js';
+import { Application, Container } from 'pixi.js';
 import { Assets } from 'pixi.js';
+import { Scene } from './scene';
+
+
 
 // Crear una instancia de la aplicación
 const app = new Application<HTMLCanvasElement>({
@@ -31,8 +34,6 @@ window.addEventListener("resize", ()=>{
 	app.view.style.marginBottom = marginvertical + "px";
 })
 window.dispatchEvent( new Event("resize"));
-
-// Crear un manifest con los activos que deseas cargar
 const manifest = {
     bundles: [
         {
@@ -40,43 +41,26 @@ const manifest = {
             assets: {
                 "myMessi": "./messi.jpg",
                 "myClampy": "./clampy.png",
+                "Camina1": "./personaje/camina.jpg",
+                "Camina2": "./personaje/camina2.jpg",
             }
         },
     ]
 };
-
 // Función para inicializar y cargar los activos
 async function init() {
     // Inicializar Assets con el manifest
     await Assets.init({ manifest: manifest });
-
+    
     // Cargar el bundle que contiene los activos
     await Assets.loadBundle("bundleName");
 
-    // Crear los sprites una vez que los activos estén cargados
-    const messi: Sprite = Sprite.from("myMessi");
-    //messi.x = 400;
-    //messi.y = 40;
-    //messi.scale.x = 1;
-	//messi.scale.y = 1;
-	//messi.angle= 45;
-    //clampy.scale.set(0.5,0.5);
-    //clampy.position.set(100,100)
-	const clampy: Sprite = Sprite.from("myClampy");
-    clampy.position.set(170,50)
-    clampy.scale.set(0.2);
+    const myScene = new Scene(); 
+    app.stage.addChild(myScene);
 
-    const messiclampy : Container = new Container();
-
-	messiclampy.addChild(messi);
-    messiclampy.addChild(clampy);
-
-    messiclampy.scale.set(1);
-    messiclampy.x = 200;
-    messiclampy.y = 300;
-        
-    app.stage.addChild(messiclampy);
 }
 
 // Llamar a la función init para comenzar la carga de activos
 init();
+
+export { Container };
