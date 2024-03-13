@@ -1,6 +1,6 @@
 import { Application, Container } from 'pixi.js';
 import { Assets } from 'pixi.js';
-import { Scene } from './scene';
+import { uidemo } from './scenes/uidemo';
 
 
 
@@ -43,6 +43,10 @@ const manifest = {
                 "myClampy": "./clampy.png",
                 "Camina1": "./personaje/camina.jpg",
                 "Camina2": "./personaje/camina2.jpg",
+                "Fruta1" : "./frutas/PNG/shadow/2.png",
+                "Fruta2" : "./frutas/PNG/shadow/7.png",
+                "Fruta3" : "./frutas/PNG/shadow/5.png",
+                "window" : "./window.png"
             }
         },
     ]
@@ -55,7 +59,7 @@ async function init() {
     // Cargar el bundle que contiene los activos
     await Assets.loadBundle("bundleName");
 
-    const myScene = new Scene(); 
+    const myScene = new uidemo(); 
     app.stage.addChild(myScene);
 
 }
