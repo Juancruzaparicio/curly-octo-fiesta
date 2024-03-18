@@ -46,7 +46,9 @@ const manifest = {
                 "Fruta1" : "./frutas/PNG/shadow/2.png",
                 "Fruta2" : "./frutas/PNG/shadow/7.png",
                 "Fruta3" : "./frutas/PNG/shadow/5.png",
-                "window" : "./window.png"
+                "window" : "./window.png",
+                "Mouse"  : "./frutas/PNG/shadow/9.png",
+                "shadow1" :"./frutas/PNG/without_shadow/2.png"
             }
         },
     ]
