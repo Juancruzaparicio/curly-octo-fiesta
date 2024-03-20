@@ -24,10 +24,10 @@ export class Button extends Container{
         this.addChild(this.spr);
 
         this.spr.interactive= true;
-        this.spr.on("mousedown", this.onMouseDown, this);
-        this.spr.on("mouseup", this.onMouseup, this);
-        this.spr.on("mouseover", this.onMouseover, this);
-        this.spr.on("mouseout", this.onMouseout, this);
+        this.spr.on("pointerdown", this.onMouseDown, this);
+        this.spr.on("pointerup", this.onMouseup, this);
+        this.spr.on("pointerover", this.onMouseover, this);
+        this.spr.on("pointerout", this.onMouseout, this);
 
     }
     private onMouseDown():void {
