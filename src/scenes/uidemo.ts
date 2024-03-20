@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 
 export class uidemo extends Container{
     private fruta1:Button;
+    private texto:Text;
     constructor(){
         super();
 
@@ -32,18 +33,19 @@ export class uidemo extends Container{
         miniWindow.addChild(fruta3);
 
         // Agregar texto debajo de la mini ventana
-        const texto = new Text("¡Tres frutas!", { fontSize: 24, fill: 0x00ff00 });
-        texto.position.set(100,200);
-        miniWindow.addChild(texto); // Posición relativa al contenedor principal
+        this.texto = new Text("¡Tres frutas!", { fontSize: 24, fill: 0x00ff00 });
+        this.texto.position.set(100,200);
+        miniWindow.addChild(this.texto); // Posición relativa al contenedor principal
 
         document.addEventListener("keydown", this.onkeydown.bind(this));
 
         // Agregar la mini ventana y el texto al contenedor principal
         this.addChild(miniWindow);
-        this.addChild(texto);
+        this.addChild(this.texto);
     }
     private onkeydown(e:KeyboardEvent):void { 
         console.log("keypressed",e.code);
+        this.texto.text += e.code;
     }
 
     private onButtonclick():void{
