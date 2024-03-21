@@ -1,5 +1,6 @@
 import { Container, Sprite, Text, Texture } from "pixi.js";
 import { Button } from "../ui/button";
+import { Keyboard } from "../utils/keyboard";
 
 export class uidemo extends Container{
     private fruta1:Button;
@@ -15,8 +16,9 @@ export class uidemo extends Container{
         // Agregar las frutas a la mini ventana
         this.fruta1 = new Button(Texture.from("Fruta1"),
         Texture.from("shadow1"),
-        Texture.from("Fruta1"),
-        this.onButtonclick.bind(this) );
+        Texture.from("Fruta1")
+         );
+         this.fruta1.on("buttonClick", this.onButtonclick, this);
         this.fruta1.scale.set(0.3);
         this.fruta1.position.set(5,30);
 
@@ -37,19 +39,23 @@ export class uidemo extends Container{
         this.texto.position.set(100,200);
         miniWindow.addChild(this.texto); // Posición relativa al contenedor principal
 
-        document.addEventListener("keydown", this.onkeydown.bind(this));
-
         // Agregar la mini ventana y el texto al contenedor principal
         this.addChild(miniWindow);
         this.addChild(this.texto);
+        Keyboard.down.on("KeyB", this.onKeyB, this);
+        Keyboard.up.on("KeyB", this.onKeyBup, this);
     }
-    private onkeydown(e:KeyboardEvent):void { 
-        console.log("keypressed",e.code);
-        this.texto.text += e.code;
+
+    private onKeyB():void{
+        console.log("aprete la b", this);
+    }
+    private onKeyBup():void{
+        console.log("solte la b", this);
     }
 
     private onButtonclick():void{
         console.log("nashee", this);
+
     }
    
 }

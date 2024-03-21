@@ -8,17 +8,15 @@ export class Button extends Container{
 
     private over:Texture;
 
-    private callback:Function;
-
     private spr: Sprite;
     
-    constructor(def:Texture, down:Texture, over:Texture, callback:Function)
+    constructor(def:Texture, down:Texture, over:Texture)
     {
         super();
         this.def = def;
         this.over = over;
         this.down = down;
-        this.callback = callback;
+        
 
         this.spr = Sprite.from(def);
         this.addChild(this.spr);
@@ -34,7 +32,7 @@ export class Button extends Container{
         this.spr.texture = this.down;
     }
     private onMouseup():void {
-        this.callback();
+        this.emit("buttonClick");
         this.spr.texture = this.over;
     }
     private onMouseout():void {
